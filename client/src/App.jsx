@@ -1,34 +1,98 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react"
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom"
+import "./App.css"
 
-function App() {
-  const [count, setCount] = useState(0)
+/* -------- PÁGINA CAMPEONES (tu código original) -------- */
+function Champions() {
+  const [champions, setChampions] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetch("http://localhost:3000/api/champions")
+      .then(res => res.json())
+      .then(data => {
+        setChampions(data)
+        setLoading(false)
+      })
+      .catch(error => {
+        console.error(error)
+        setLoading(false)
+      })
+  }, [])
+
+  if (loading) {
+    return <h2>Cargando campeones...</h2>
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="container">
+      <h1>League of Legends Champions</h1>
+
+      <div className="grid">
+        {champions.map(champ => (
+          <div key={champ.id} className="card">
+            <img src={champ.image} alt={champ.name} />
+            <h3>{champ.name}</h3>
+            <p>{champ.title}</p>
+
+            <div className="tags">
+              {champ.tags.map(tag => (
+                <span key={tag} className="tag">{tag}</span>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+    </div>
+  )
+}
+
+/* -------- PÁGINAS SIMPLES -------- */
+function Favorites() {
+  return (
+    <div className="container">
+      <h1>Favoritos ⭐</h1>
+      <p>Aquí irán los campeones guardados</p>
+    </div>
+  )
+}
+
+function Profile() {
+  return (
+    <div className="container">
+      <h1>Perfil 👤</h1>
+      <p>Login y datos del usuario</p>
+    </div>
+  )
+}
+
+/* -------- NAVBAR -------- */
+function Navbar() {
+  return (
+    <nav className="navbar">
+      <h2 className="logo">LOL API</h2>
+
+      <div className="links">
+        <Link to="/">Campeones</Link>
+        <Link to="/favorites">Favoritos</Link>
+        <Link to="/profile">Perfil</Link>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </nav>
+  )
+}
+
+/* -------- APP -------- */
+function App() {
+  return (
+    <BrowserRouter>
+      <Navbar />
+
+      <Routes>
+        <Route path="/" element={<Champions />} />
+        <Route path="/favorites" element={<Favorites />} />
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
