@@ -1,0 +1,103 @@
+.champion-detail {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 32px 40px;
+}
+
+/* BOTÓN VOLVER */
+.detail-back {
+  margin-bottom: 20px;
+}
+
+.back-btn {
+  background: #020617;
+  color: #f8fafc;
+  border: 1px solid #1e293b;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.back-btn:hover {
+  background: #1e293b;
+}
+
+/* INFO PRINCIPAL */
+.detail-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  margin-bottom: 50px;
+}
+
+.detail-image {
+  width: 340px;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+.detail-info {
+  text-align: left;
+}
+
+.detail-info h1 {
+  font-size: 3rem;
+}
+
+.detail-info h3 {
+  font-weight: normal;
+  opacity: 0.85;
+  margin-bottom: 14px;
+}
+
+.roles {
+  display: flex;
+  gap: 10px;
+}
+
+.role {
+  background: #1e293b;
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+}
+
+/* CONTENIDO HORIZONTAL */
+.detail-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 40px;
+}
+
+.lore p {
+  line-height: 1.7;
+  opacity: 0.9;
+}
+
+/* HABILIDADES */
+.abilities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.ability-card {
+  background: #020617;
+  border: 1px solid #1e293b;
+  padding: 16px;
+  border-radius: 14px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .detail-main {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .detail-content {
+    grid-template-columns: 1fr;
+  }
+}
