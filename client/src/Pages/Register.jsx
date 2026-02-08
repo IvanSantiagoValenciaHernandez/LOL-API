@@ -89,33 +89,35 @@ function Register() {
   }
 
   return (
-    <div className="auth-container">
-      <h1>Registro</h1>
-      {success && <p className="success">{success}</p>}
+    <div className="register-page">
+      <div className="auth-container">
+        <h1>Registro</h1>
+        {success && <p className="success">{success}</p>}
 
-      <form onSubmit={handleRegister}>
-        <input
-          type="text"
-          placeholder="Nombre"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-        />
+        <form onSubmit={handleRegister}>
+          <div className="name-row">
+            <input
+              type="text"
+              placeholder="Nombre"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Apellido"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+            />
+          </div>
 
-        <input
-          type="text"
-          placeholder="Apellido"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-        />
+          <input
+            type="email"
+            placeholder="Correo electrónico"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-        <input
-          type="email"
-          placeholder="Correo electrónico"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <input
+          <input
             type="password"
             placeholder="Contraseña"
             value={password}
@@ -123,47 +125,51 @@ function Register() {
             onFocus={() => setShowRules(true)}
             onBlur={() => setShowRules(true)}
             required
-        />
-        {showRules && (
+          />
+          
+          {showRules && (
             <div className="password-rules">
-                <p className={passwordRules.length(password) ? "valid" : ""}>
-                    • Mínimo 8 caracteres
-                </p>
-                <p className={passwordRules.upper(password) ? "valid" : ""}>
-                    • Una letra mayúscula
-                </p>
-                <p className={passwordRules.lower(password) ? "valid" : ""}>
-                    • Una letra minúscula
-                </p>
-                <p className={passwordRules.number(password) ? "valid" : ""}>
-                    • Un número
-                </p>
-                <p className={passwordRules.special(password) ? "valid" : ""}>
-                    • Un carácter especial
-                </p>
+              <p className={passwordRules.length(password) ? "valid" : ""}>
+                • Mínimo 8 caracteres
+              </p>
+              <p className={passwordRules.upper(password) ? "valid" : ""}>
+                • Una letra mayúscula
+              </p>
+              <p className={passwordRules.lower(password) ? "valid" : ""}>
+                • Una letra minúscula
+              </p>
+              <p className={passwordRules.number(password) ? "valid" : ""}>
+                • Un número
+              </p>
+              <p className={passwordRules.special(password) ? "valid" : ""}>
+                • Un carácter especial
+              </p>
             </div>
-        )}
+          )}
 
-        <input
-          type="password"
-          placeholder="Confirmar contraseña"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
+          <input
+            type="password"
+            placeholder="Confirmar contraseña"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
 
-        {error && <p className="error">{error}</p>}
+          {error && <p className="error">{error}</p>}
 
-        <button disabled={loading}>
-          {loading ? "Registrando..." : "Registrarse"}
-        </button>
-      </form>
+          <button disabled={loading}>
+            {loading ? "Registrando..." : "Registrarse"}
+          </button>
+        </form>
 
-      <p className="auth-link">
-        ¿Ya tienes cuenta?{" "}
-        <span onClick={() => navigate("/login")}>Inicia sesión</span>
-      </p>
+
+        <p className="auth-link">
+          ¿Ya tienes cuenta?{" "}
+          <span onClick={() => navigate("/login")}>Inicia sesión</span>
+        </p>
+      </div>
     </div>
   )
+
 }
 
 export default Register

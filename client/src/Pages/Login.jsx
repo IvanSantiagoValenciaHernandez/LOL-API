@@ -52,10 +52,12 @@ function Login() {
   }
 
   return (
-    <div className="auth-container">
-      <h1>Iniciar sesión</h1>
+    <div className="login-page">
+      <div className="auth-container">
+        <h1>Iniciar sesión</h1>
 
-      <form onSubmit={handleLogin}>
+        <form onSubmit={handleLogin}>
+
         <input
           type="email"
           placeholder="Correo electrónico"
@@ -80,14 +82,16 @@ function Login() {
       </form>
 
       {/* 👉 LINK A REGISTRO */}
-      <p className="auth-link">
-        ¿No tienes cuenta?{" "}
-        <span onClick={() => navigate("/register")}>
-          Regístrate
-        </span>
-      </p>
+        <p className="auth-link">
+          ¿No tienes cuenta?{" "}
+          <span onClick={() => navigate("/register")}>
+            Regístrate
+          </span>
+        </p>
+      </div>
     </div>
   )
+
 }
 
 export default Login

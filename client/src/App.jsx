@@ -9,6 +9,8 @@ import Champions from "./Pages/Campeones"
 import Favorites from "./Pages/Favoritos"
 import Profile from "./Pages/Perfil"
 import ChampionDetail from "./Pages/CampeonesDetalles"
+import BuscarAmigos from "./Pages/BuscarAmigos"
+import PerfilAmigo from "./Pages/PerfilAmigo"
 import ProtectedRoute from "./Components/ProtectedRoute"
 
 import "./App.css"
@@ -80,7 +82,26 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route
+          path="/buscar-amigos"
+          element={
+            <ProtectedRoute session={session}>
+              <BuscarAmigos />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/friend/:userId"
+          element={
+            <ProtectedRoute session={session}>
+              <PerfilAmigo />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
+
     </BrowserRouter>
   )
 }

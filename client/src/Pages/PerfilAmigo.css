@@ -1,0 +1,204 @@
+.perfil-amigo-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  color: #fff;
+}
+
+.back-btn {
+  background: transparent;
+  border: 2px solid #c9aa6e;
+  color: #c9aa6e;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  background: #c9aa6e;
+  color: #091428;
+}
+
+.error-message {
+  text-align: center;
+  padding: 40px;
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid #dc2626;
+  border-radius: 12px;
+}
+
+.error-message p {
+  color: #f87171;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+.friend-profile-card {
+  background: linear-gradient(135deg, #091428 0%, #0a1428 100%);
+  border: 2px solid #c9aa6e;
+  border-radius: 16px;
+  padding: 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.friend-profile-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #c9aa6e, #f0e6d2, #c9aa6e);
+}
+
+.avatar-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.friend-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #c9aa6e;
+  box-shadow: 0 0 40px rgba(201, 170, 110, 0.5), 
+              0 0 80px rgba(201, 170, 110, 0.2),
+              inset 0 0 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.friend-avatar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 50px rgba(201, 170, 110, 0.7), 
+              0 0 100px rgba(201, 170, 110, 0.3),
+              inset 0 0 30px rgba(0, 0, 0, 0.4);
+}
+
+
+.friend-profile-card h1 {
+  color: #f0e6d2;
+  margin: 0 0 20px 0;
+  font-size: 2rem;
+}
+
+.friend-info {
+  margin-bottom: 30px;
+}
+
+.friend-info p {
+  margin: 10px 0;
+  color: #a09b8c;
+  font-size: 1.1rem;
+}
+
+.friend-info strong {
+  color: #c9aa6e;
+}
+
+.friend-section {
+  margin: 30px 0;
+  padding: 20px;
+  background: rgba(10, 20, 40, 0.5);
+  border-radius: 12px;
+  border: 1px solid #1e3a5f;
+}
+
+.friend-section h3 {
+  color: #c9aa6e;
+  margin: 0 0 15px 0;
+  font-size: 1.3rem;
+}
+
+.champions-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.champion-tag {
+  background: linear-gradient(135deg, #c9aa6e 0%, #a07c4b 100%);
+  color: #091428;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.favorites-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.favorite-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  margin: 8px 0;
+  background: rgba(201, 170, 110, 0.1);
+  border-radius: 8px;
+  border-left: 3px solid #c9aa6e;
+}
+
+.favorite-name {
+  color: #f0e6d2;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.favorite-date {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+.no-favorites {
+  color: #666;
+  font-style: italic;
+}
+
+.friend-badge-large {
+  display: inline-block;
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .perfil-amigo-container {
+    padding: 10px;
+  }
+  
+  .friend-profile-card {
+    padding: 20px;
+  }
+  
+  .friend-avatar {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .friend-profile-card h1 {
+    font-size: 1.5rem;
+  }
+  
+  .favorite-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 5px;
+  }
+}

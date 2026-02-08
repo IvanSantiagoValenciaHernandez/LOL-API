@@ -1,50 +1,130 @@
-.auth-container {
-  max-width: 400px;
-  margin: 80px auto;
+/* Login page - Full screen centered layout */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: #020617;
-  padding: 30px;
+  padding: 20px;
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 480px;
+  background: #020617;
+  padding: 50px 45px;
   border-radius: 16px;
   text-align: center;
+  border: 1px solid #1e293b;
 }
 
 .auth-container h1 {
-  margin-bottom: 20px;
+  margin-bottom: 35px;
+  font-size: 2.2rem;
+  color: #fff;
+  font-weight: 700;
 }
 
 .auth-container form {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 20px;
 }
 
 .auth-container input {
-  padding: 12px;
+  padding: 18px 20px;
   border-radius: 10px;
   border: 1px solid #1e293b;
   background: #020617;
   color: #fff;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.auth-container input:focus {
+  border-color: #facc15;
+  box-shadow: 0 0 15px rgba(250, 204, 21, 0.2);
+}
+
+.auth-container input::placeholder {
+  color: #64748b;
+  font-size: 1rem;
 }
 
 .auth-container button {
-  padding: 12px;
+  padding: 18px 30px;
   border-radius: 10px;
   background: #facc15;
   color: #000;
   font-weight: bold;
+  font-size: 1.15rem;
   cursor: pointer;
+  border: none;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+}
+
+.auth-container button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(250, 204, 21, 0.3);
+  background: #fde047;
+}
+
+.auth-container button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .error {
   color: #ef4444;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  background: rgba(239, 68, 68, 0.1);
+  padding: 12px 16px;
+  border-radius: 10px;
+  border-left: 3px solid #ef4444;
+  margin-top: 5px;
+  text-align: left;
 }
 
 .auth-link {
-  margin-top: 16px;
-  font-size: 0.9rem;
+  margin-top: 25px;
+  font-size: 1rem;
+  color: #94a3b8;
 }
 
 .auth-link span {
   color: #38bdf8;
   cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.auth-link span:hover {
+  color: #7dd3fc;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .auth-container {
+    padding: 35px 25px;
+    max-width: 100%;
+  }
+  
+  .auth-container h1 {
+    font-size: 1.8rem;
+  }
+  
+  .auth-container input {
+    padding: 16px 18px;
+    font-size: 1rem;
+  }
+  
+  .auth-container button {
+    padding: 16px 25px;
+    font-size: 1.05rem;
+  }
 }

@@ -10,6 +10,7 @@ function Profile() {
   const [isEditing, setIsEditing] = useState(false)
   const [errorMsg, setErrorMsg] = useState(null)
   const [avatarPublicUrl, setAvatarPublicUrl] = useState(null)
+  const [nicknameError, setNicknameError] = useState(null)
 
   useEffect(() => {
     getProfile()
@@ -110,6 +111,31 @@ function Profile() {
   }
 
   /* =========================
+     VALIDAR NICKNAME ÚNICO
+  ========================= */
+  const checkNicknameUnique = async (nickname) => {
+    if (!nickname || nickname.trim() === "") return true
+    
+    try {
+      const { data: { user } } = await supabase.auth.getUser()
+      
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("id")
+        .eq("nickname", nickname.trim())
+        .neq("id", user.id) // Excluir el usuario actual
+        .maybeSingle()
+
+      if (error) throw error
+
+      return !data // true si no existe, false si ya está en uso
+    } catch (err) {
+      console.error("Error verificando nickname:", err)
+      return false
+    }
+  }
+
+  /* =========================
      GUARDAR CAMBIOS
   ========================= */
   const saveProfile = async () => {
@@ -118,7 +144,17 @@ function Profile() {
       return
     }
 
+    // Validar nickname único antes de guardar
+    if (profile.nickname && profile.nickname.trim() !== "") {
+      const isUnique = await checkNicknameUnique(profile.nickname)
+      if (!isUnique) {
+        setNicknameError("❌ Este apodo ya está en uso. Por favor elige otro.")
+        return
+      }
+    }
+
     setSaving(true)
+    setNicknameError(null)
 
     try {
       const { error } = await supabase
@@ -367,11 +403,20 @@ function Profile() {
               <input
                 type="text"
                 value={profile.nickname || ""}
-                onChange={(e) =>
+                onChange={(e) => {
                   setProfile({ ...profile, nickname: e.target.value })
-                }
+                  setNicknameError(null) // Limpiar error al escribir
+                }}
                 placeholder="Tu apodo en el juego"
               />
+              {nicknameError && (
+                <p style={{color: '#f87171', fontSize: '0.9rem', marginTop: '5px'}}>
+                  {nicknameError}
+                </p>
+              )}
+              <p style={{color: '#888', fontSize: '0.8rem', marginTop: '5px'}}>
+                Este apodo será visible para otros usuarios y debe ser único
+              </p>
             </div>
           </>
         ) : (
@@ -433,7 +478,10 @@ function Profile() {
             {saving ? "Guardando..." : "💾 Guardar Cambios"}
           </button>
           <button 
-            onClick={() => setIsEditing(false)}
+            onClick={() => {
+              setIsEditing(false)
+              setNicknameError(null)
+            }}
             className="cancel-button"
           >
             ❌ Cancelar
