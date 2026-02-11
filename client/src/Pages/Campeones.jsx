@@ -80,10 +80,9 @@ function Champions() {
     }
   }
 
-
-
+  const API = import.meta.env.VITE_API_URL
   useEffect(() => {
-    fetch("http://localhost:3000/api/champions")
+    fetch(`${API}/api/champions`)
       .then(res => res.json())
       .then(data => {
         setChampions(data)
